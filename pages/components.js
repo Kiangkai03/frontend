@@ -21,8 +21,7 @@ export default function Home() {
             <Link href="/"><a>home │</a></Link>
             <Link href="/about"><a>about │</a></Link>
             <Link href="/service"><a>service │</a></Link>
-            <Link href="/products/a001"><a>products │</a></Link>
-            <Link href="/components"><a>components</a></Link>
+            <Link href="/products/a001"><a>products</a></Link>
             </center>
       </main>
       <br />
