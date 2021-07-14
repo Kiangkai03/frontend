@@ -3,23 +3,37 @@ import Link from "next/link";
 import { Button } from "@material-ui/core/";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import NavigationIcon from '@material-ui/icons/Navigation';
+import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@material-ui/core/TextField";
+import Switch from "@material-ui/core/Switch";
+
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
   root: {
     "& > *": {
       margin: theme.spacing(1),
-     },
     },
-    extendedIcon: {
-        marginRight: theme.spacing(1),
+  },
+
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
   },
 }));
-
 
 <link
   rel="stylesheet"
@@ -27,13 +41,28 @@ const useStyles = makeStyles((theme) => ({
 />;
 
 export default function Home() {
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    setState({ ...state, [event.target.name]: event.target.checked });
+
+  };
+
+
+  const classes = useStyles();
+
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+  });
+
   return (
     <div>
       <center>
         <Head>
           <title>ออกแบบ</title>
         </Head>
-
         <main>
           <h1>
             <center> Index page</center>
@@ -61,7 +90,7 @@ export default function Home() {
         <Button variant="contained" color="secondary">
           Hello
         </Button>
-        <br /><br />
+        <br /> <br />
         <Button variant="outlined">Default</Button>
         <Button variant="outlined" color="primary">
           Primary
@@ -75,20 +104,82 @@ export default function Home() {
         <Button variant="outlined" color="primary" href="#outlined-buttons">
           Link
         </Button>
-        <br /><br />
-        <Fab color="primary" aria-label="add">
-        <AddIcon />
-      </Fab>
-      <Fab color="secondary" aria-label="edit">
-        <EditIcon />
-      </Fab>
-      <Fab variant="extended">
-        <NavigationIcon className={classes.extendedIcon} />
-        Navigate
-      </Fab>
-      <Fab disabled aria-label="like">
-        <FavoriteIcon />
-      </Fab>
+        <br />
+        <br />
+        <Checkbox
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "primary checkbox" }}
+        />
+        <Checkbox
+          defaultChecked
+          color="primary"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
+        <Checkbox
+          defaultChecked
+          indeterminate
+          inputProps={{ "aria-label": "indeterminate checkbox" }}
+        />
+        <Checkbox
+          defaultChecked
+          color="default"
+          inputProps={{ "aria-label": "checkbox with default color" }}
+        />
+        <Checkbox
+          defaultChecked
+          size="small"
+          inputProps={{ "aria-label": "checkbox with small size" }}
+        />
+        <br /> <br />
+        <center>
+          <form className={classes.container} noValidate>
+            <TextField
+              id="date"
+              label="Birthday"
+              type="date"
+              defaultValue="2017-05-24"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </form>
+        </center>
+        <form className={classes.container} noValidate>
+          <TextField
+            id="time"
+            label="Alarm clock"
+            type="time"
+            defaultValue="07:30"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          />
+        </form>
+        <br /> <br />
+        <Switch
+          checked={state.checkedA}
+          onChange={handleChange}
+          name="checkedA"
+          inputProps={{ "aria-label": "secondary checkbox" }}
+        />
+        <Switch
+          checked={state.checkedB}
+          onChange={handleChange}
+          color="primary"
+          name="checkedB"
+          inputProps={{ "aria-label": "primary checkbox" }}
+        />
+        <Switch
+          defaultChecked
+          color="default"
+          inputProps={{ "aria-label": "checkbox with default color" }}
+        />
       </center>
     </div>
   );
