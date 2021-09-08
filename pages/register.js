@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 
 const register = () => {
   return (
@@ -21,7 +22,7 @@ const register = () => {
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
-                    <span className="fas fa-user" />
+                  <i class="fas fa-address-card"></i>
                   </div>
                 </div>
               </div>
@@ -33,7 +34,7 @@ const register = () => {
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
-                    <span className="fas fa-envelope" />
+                  <i class="fas fa-at"></i>
                   </div>
                 </div>
               </div>
@@ -45,7 +46,7 @@ const register = () => {
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
-                    <span className="fas fa-lock" />
+                  <i class="fas fa-user-lock"></i>
                   </div>
                 </div>
               </div>
@@ -57,7 +58,8 @@ const register = () => {
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
-                    <span className="fas fa-lock" />
+                  <i class="fas fa-user-lock"></i>
+
                   </div>
                 </div>
               </div>
@@ -77,7 +79,7 @@ const register = () => {
                 </div>
                 {/* /.col */}
                 <div className="col-4">
-                  <button type="submit" className="btn btn-primary btn-block">
+                  <button type="submit" className="btn btn-outline-success">
                     Register
                   </button>
                 </div>
@@ -86,18 +88,15 @@ const register = () => {
             </form>
             <div className="social-auth-links text-center">
               <p>- OR -</p>
-              <a href="#" className="btn btn-block btn-primary">
+              <a href="#" className="btn btn-outline-primary">
                 <i className="fab fa-facebook mr-2" />
                 Sign up using Facebook
               </a>
-              <a href="#" className="btn btn-block btn-danger">
-                <i className="fab fa-google-plus mr-2" />
-                Sign up using Google+
-              </a>
+              
             </div>
-            <a href="login.html" className="text-center">
-              I already have a membership
-            </a>
+            <Link href='login'>
+            <a className="text-center">ฉันมีสมาชิกแล้ว</a>
+           </Link>
           </div>
           {/* /.form-box */}
         </div>

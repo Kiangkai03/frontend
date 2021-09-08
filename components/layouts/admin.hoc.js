@@ -10,10 +10,8 @@ export default class AdminHOC extends Component {
       <div class="wrapper">
         <AdminHeader />
         <AdminSidebar />
-        
         {this.props.children}
         <AdminFooter />
-        
       </div>
     </div>
   )

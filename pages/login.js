@@ -1,10 +1,10 @@
 import React from "react";
 import Head from 'next/head'
+import Link from 'next/link';
 
 const login = () => {
   return (
 <body class="hold-transition login-page">
-          
       
     <div className="login-box">
   <div className="login-logo">
@@ -19,7 +19,7 @@ const login = () => {
           <input type="email" className="form-control" placeholder="Email" />
           <div className="input-group-append">
             <div className="input-group-text">
-              <span className="fas fa-envelope" />
+            <i class="fas fa-at"></i>
             </div>
           </div>
         </div>
@@ -27,7 +27,7 @@ const login = () => {
           <input type="password" className="form-control" placeholder="Password" />
           <div className="input-group-append">
             <div className="input-group-text">
-              <span className="fas fa-lock" />
+            <i class="fas fa-user-lock"></i>
             </div>
           </div>
         </div>
@@ -42,26 +42,27 @@ const login = () => {
           </div>
           {/* /.col */}
           <div className="col-4">
-            <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" className="btn btn-outline-success">Sign In</button>
           </div>
           {/* /.col */}
         </div>
       </form>
       <div className="social-auth-links text-center mb-3">
         <p>- OR -</p>
-        <a href="#" className="btn btn-block btn-primary">
+        <a href="#" className="btn btn-outline-primary">
           <i className="fab fa-facebook mr-2" /> Sign in using Facebook
-        </a>
-        <a href="#" className="btn btn-block btn-danger">
-          <i className="fab fa-google-plus mr-2" /> Sign in using Google+
         </a>
       </div>
       {/* /.social-auth-links */}
       <p className="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        
+        <a href="forgot-password.html">ลืมรหัสผ่าน</a>
       </p>
       <p className="mb-0">
-        <a href="register.html" className="text-center">Register a new membership</a>
+
+        <Link href='register'>
+         <a className="text-center"> สมัครสมาชิก</a>
+       </Link> 
       </p>
     </div>
   </div>
