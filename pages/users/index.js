@@ -1,7 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import AdminHOC from "../components/layouts/admin.hoc";
+import AdminHOC from "../../components/layouts/admin.hoc";
+
 
 import axios from 'axios';
 
@@ -39,7 +40,6 @@ const users = ({ users,error}) => {
                           <th>firstname</th>
                           <th>lastname(s)</th>
                           <th>username</th>
-                          <th>Password</th>
                           <th>edit</th>
                           <th>delete</th>
                         </tr>
@@ -51,14 +51,8 @@ const users = ({ users,error}) => {
                           <td>{data.firstname}</td>
                           <td>{data.lastname}</td>
                           <td>{data.username}</td>
-                          <td>{data.password}</td>
-                          <td>Misc</td>
-                          <td>PSP browser</td>
-                          <td>PSP</td>
-                          <td>-</td>
-                          <td>C</td>
-                          <th>x</th>
-                          <th>x</th>
+                          <td className="text-center"><Link href={`/users/edit/${data.id}`}><a className="btn btn-warning">แก้ไข</a></Link></td>
+                          <td className="text-center"><Link href="#"><a className="btn btn-danger btn-sm">ลบ</a></Link></td>
                         </tr>   
                         ))}                  
                       </tbody>
@@ -80,9 +74,9 @@ const users = ({ users,error}) => {
     </div>
   );
 };
-Users.getInitialProps = async ctx => {
+users.getInitialProps = async ctx => {
   try {
-    const res = await axios.get('http://localhost:1337/members');
+    const res = await axios.get('https://api-itcmtc.herokuapp.com/members');
     const users= res.data;
     return { users };
   } catch (error) {

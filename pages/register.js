@@ -1,109 +1,123 @@
-import React from "react";
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
+import axios from 'axios'
+import { useState } from 'react'; //เก็บข้อมูลไว้ในตัวแปร state
+import Swal from 'sweetalert2'
 
 const register = () => {
-  return (
-    <body class="hold-transition register-page">
-      <div className="register-box">
-        <div className="register-logo">
-          <a href="../../index2.html">
-            <b>Admin</b>LTE
-          </a>
-        </div>
-        <div className="card">
-          <div className="card-body register-card-body">
-            <p className="login-box-msg">Register a new membership</p>
-            <form action="../../index.html" method="post">
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Full name"
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                  <i class="fas fa-address-card"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                  <i class="fas fa-at"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                  <i class="fas fa-user-lock"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Retype password"
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                  <i class="fas fa-user-lock"></i>
+  //if (error) {
+    //return <div>An error occured: {error.message}</div>;
+ //}
 
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-8">
-                  <div className="icheck-primary">
-                    <input
-                      type="checkbox"
-                      id="agreeTerms"
-                      name="terms"
-                      defaultValue="agree"
-                    />
-                    <label htmlFor="agreeTerms">
-                      I agree to the <a href="#">terms</a>
-                    </label>
-                  </div>
-                </div>
-                {/* /.col */}
-                <div className="col-4">
-                  <button type="submit" className="btn btn-outline-success">
-                    Register
-                  </button>
-                </div>
-                {/* /.col */}
-              </div>
-            </form>
-            <div className="social-auth-links text-center">
-              <p>- OR -</p>
-              <a href="#" className="btn btn-outline-primary">
-                <i className="fab fa-facebook mr-2" />
-                Sign up using Facebook
-              </a>
-              
+const [firstname, setfirstName] = useState("");
+const [lastname, setlastName] = useState("");
+const [username, setuserName] = useState("");
+const [password, setPassword] = useState("");
+
+const addMembers = () => {
+  axios.post('https://api-itcmtc.herokuapp.com/members', {
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: password
+
+})
+.then(function (response) {
+  console.log(response);
+  Swal.fire({
+      icon: 'success',
+      title: '<h3>บันทึกข้อมูลเรียบร้อยแล้ว</h3>',
+      showConfirmButton: false,
+      timer: 2000
+  }).then(function () {
+      window.location = "./";
+  });
+})
+.catch(function (error) {
+  console.log(error);
+  Swal.fire({
+      title: 'Error!',
+      text: 'เกิดข้อผิดพลาด!',
+      icon: 'error',
+      confirmButtonText: 'ตกลง'
+  })
+});
+}
+
+    return (
+        <div>
+          <body class="hold-transition register-page">
+<div className="register-box">
+  <div className="card">
+    <div className="card-body register-card-body">
+      <p className="login-box-msg">สมัครสมาชิก</p>
+      <form action="/" method="post">
+        <div className="input-group mb-3">
+          <input 
+          type="text" 
+          className="form-control"
+           placeholder="ชื่อ" 
+           onChange={(event) => {setfirstName(event.target.value)}}/> 
+          
+          <div className="input-group-append">
+            <div className="input-group-text">
+              <span className="fas fa-user" />
             </div>
-            <Link href='login'>
-            <a className="text-center">ฉันมีสมาชิกแล้ว</a>
-           </Link>
           </div>
-          {/* /.form-box */}
         </div>
-        {/* /.card */}
+        <div className="input-group mb-3">
+          <input type="text" className="form-control" placeholder="นามสกุล" onChange={(event) => {setlastName(event.target.value)}}/>
+          <div className="input-group-append">
+            <div className="input-group-text">
+              <span className="fas fa-envelope" />
+            </div>
+          </div>
+        </div>
+        <div className="input-group mb-3">
+          <input type="text" className="form-control" placeholder="Username" onChange={(event) => {setuserName(event.target.value)}} />
+          <div className="input-group-append">
+            <div className="input-group-text">
+              <span className="fas fa-lock" />
+            </div>
+          </div>
+        </div>
+        <div className="input-group mb-3">
+          <input type="password" className="form-control" placeholder="Password" onChange={(event) => {setPassword(event.target.value)}} />
+          <div className="input-group-append">
+            <div className="input-group-text">
+              <span className="fas fa-lock" />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-8">
+            <div className="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" defaultValue="agree" />
+              <label htmlFor="agreeTerms">
+                &nbsp;ยอมรับ <a href="#">เงื่อนไข</a>
+              </label>
+            </div>
+          </div>
+          {/* /.col */}
+        </div>
+      </form>
+      <div className="social-auth-links text-center">
+      <button type="button" class="btn btn-success" onClick={addMembers}>บันทึก</button>
+      <br />
+        <Link href="/login">
+      <a className="text-center">ฉันมีบัญชีอยู่แล้ว</a>
+      </Link>
       </div>
-    </body>
-  );
-};
+    </div>
+    {/* /.form-box */}
+  </div>{/* /.card */}
+</div>
+{/* /.register-box */}
+
+</body>
+
+        </div>
+    )
+}
 
 export default register;

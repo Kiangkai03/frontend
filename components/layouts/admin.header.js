@@ -1,3 +1,4 @@
+import Link from "next/link";
 const AdminHeader = () =>{
     return (
       <nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -14,14 +15,30 @@ const AdminHeader = () =>{
             </a>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="#" className="nav-link">
-              Home
-            </a>
+            <Link href="./">
+            <a href="#" className="nav-link"> หน้าแรก</a>
+            </Link>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
             <a href="#" className="nav-link">
               Contact
             </a>
+            
+          </li>
+          <li className="nav-item d-none d-sm-inline-block">
+          <Link href="users">
+            <a href="#" className="nav-link">
+              ตารางรายการสมาชิก
+            </a>
+            </Link>
+          </li>
+
+          <li className="nav-item d-none d-sm-inline-block">
+          <Link href="register">
+            <a href="#" className="nav-link">
+              สมัครสมาชิก
+            </a>
+            </Link>
           </li>
         </ul>
         {/* Right navbar links */}
