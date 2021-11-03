@@ -1,21 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
-import axios from 'axios'
+import Axios from 'axios'
 import { useState } from 'react'; //เก็บข้อมูลไว้ในตัวแปร state
 import Swal from 'sweetalert2'
 
-const register = () => {
-  //if (error) {
-    //return <div>An error occured: {error.message}</div>;
- //}
+const Register = () => {
 
+//if (error) {
+//   return <div>An error occured: {error.message}</div>;
+//}
 const [firstname, setfirstName] = useState("");
 const [lastname, setlastName] = useState("");
 const [username, setuserName] = useState("");
 const [password, setPassword] = useState("");
 
-const addMembers = () => {
-  axios.post('https://api-itcmtc.herokuapp.com/members', {
+const addMember = () => {
+  Axios.post('https://api-itcmtc.herokuapp.com/members', {
       firstname: firstname,
       lastname: lastname,
       username: username,
@@ -43,22 +43,16 @@ const addMembers = () => {
   })
 });
 }
-
     return (
         <div>
-          <body class="hold-transition register-page">
+          <body className="hold-transition register-page">
 <div className="register-box">
   <div className="card">
     <div className="card-body register-card-body">
       <p className="login-box-msg">สมัครสมาชิก</p>
       <form action="/" method="post">
         <div className="input-group mb-3">
-          <input 
-          type="text" 
-          className="form-control"
-           placeholder="ชื่อ" 
-           onChange={(event) => {setfirstName(event.target.value)}}/> 
-          
+          <input type="text" className="form-control" placeholder="ชื่อ" onChange={(event) => { setfirstName(event.target.value) }} />
           <div className="input-group-append">
             <div className="input-group-text">
               <span className="fas fa-user" />
@@ -66,7 +60,7 @@ const addMembers = () => {
           </div>
         </div>
         <div className="input-group mb-3">
-          <input type="text" className="form-control" placeholder="นามสกุล" onChange={(event) => {setlastName(event.target.value)}}/>
+          <input type="text" className="form-control" placeholder="นามสกุล" onChange={(event) => { setlastName(event.target.value) }}/>
           <div className="input-group-append">
             <div className="input-group-text">
               <span className="fas fa-envelope" />
@@ -74,7 +68,7 @@ const addMembers = () => {
           </div>
         </div>
         <div className="input-group mb-3">
-          <input type="text" className="form-control" placeholder="Username" onChange={(event) => {setuserName(event.target.value)}} />
+          <input type="text" className="form-control" placeholder="Username" onChange={(event) => { setuserName(event.target.value) }} />
           <div className="input-group-append">
             <div className="input-group-text">
               <span className="fas fa-lock" />
@@ -82,7 +76,7 @@ const addMembers = () => {
           </div>
         </div>
         <div className="input-group mb-3">
-          <input type="password" className="form-control" placeholder="Password" onChange={(event) => {setPassword(event.target.value)}} />
+          <input type="password" className="form-control" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
           <div className="input-group-append">
             <div className="input-group-text">
               <span className="fas fa-lock" />
@@ -102,7 +96,7 @@ const addMembers = () => {
         </div>
       </form>
       <div className="social-auth-links text-center">
-      <button type="button" class="btn btn-success" onClick={addMembers}>บันทึก</button>
+      <button type="button" className="btn btn-success" onClick={addMember}>บันทึก</button>
       <br />
         <Link href="/login">
       <a className="text-center">ฉันมีบัญชีอยู่แล้ว</a>
@@ -120,4 +114,4 @@ const addMembers = () => {
     )
 }
 
-export default register;
+export default Register;
