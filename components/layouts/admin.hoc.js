@@ -6,14 +6,12 @@ import AdminFooter from './admin.footer';
 export default class AdminHOC extends Component {
   render(){
   return (
-    <div>
-      <div class="wrapper">
+      <div className="wrapper">
         <AdminHeader />
         <AdminSidebar />
         {this.props.children}
         <AdminFooter />
       </div>
-    </div>
   )
   }
 }
